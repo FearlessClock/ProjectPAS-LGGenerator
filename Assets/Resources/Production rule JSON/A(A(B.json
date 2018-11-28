@@ -1,0 +1,7 @@
+{
+	"type": "context",
+	"name": "A<A<B",
+	"preLetter": "A",
+	"predecessor": "A",
+	"postLetter": "B",
+}

@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76a3c8938b50cb74a8da7063197850f6, type: 3}
+  m_Name: UpTIntersectionDigSpace
+  m_EditorClassIdentifier: 
+  sizeX: 3
+  sizeY: 3
+  replacementTile: {fileID: 11400000, guid: 68a42f0d41c50194bbdd0cf45927c818, type: 2}
+  dug: 000100010101000000

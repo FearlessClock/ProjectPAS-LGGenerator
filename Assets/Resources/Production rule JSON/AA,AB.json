@@ -1,0 +1,6 @@
+{
+	"type": "stochastic",
+	"name": "AA or AB",
+	"successors": [AA, AB],
+	"chances": [0.2, 0.6]
+}

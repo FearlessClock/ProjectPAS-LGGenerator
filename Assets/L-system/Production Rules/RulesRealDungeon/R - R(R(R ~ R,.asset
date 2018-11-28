@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76e40d0bd91721a458eee58c131ff006, type: 3}
+  m_Name: R - R(R(R ~ R,
+  m_EditorClassIdentifier: 
+  predecessorObject: {fileID: 11400000, guid: 62e339d84633cd84eb2a0f25beaf74a0, type: 2}
+  succesorObject: {fileID: 11400000, guid: cde55c38ab7020f4d93fb73fa3d08fda, type: 2}

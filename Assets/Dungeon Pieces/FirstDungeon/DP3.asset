@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c68bf0af8f3c97c44bcbd0d55198bded, type: 3}
+  m_Name: DP3
+  m_EditorClassIdentifier: 
+  room: {fileID: 1014570939409412, guid: c184a91799c48d44192ce3be023afafe, type: 2}
+  movement: {fileID: 0}
+  replacementLetter: 67
