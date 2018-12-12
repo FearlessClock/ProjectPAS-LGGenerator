@@ -1,6 +1,7 @@
 ﻿using Genetic;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 /// <summary>
@@ -23,6 +24,12 @@ public class GeneticAlgorithm : MonoBehaviour {
     private bool geneticAlgorithmStarted;
     private bool calculatingFitness;
 
+    public int nmbrOfLSystemIterations;
+    public float roomImportance;
+    public float crossroadImportance;
+
+    public TextMeshProUGUI generationText;
+
 	// Use this for initialization
 	void Start () {
         generationCounter = 0;
@@ -39,7 +46,10 @@ public class GeneticAlgorithm : MonoBehaviour {
         }
 		for(int i = 0; i < poolSize; i++)
         {
-            currentPopulation.Add(new Genome(successorParameters, i));
+            Genome genome = new Genome(successorParameters, i);
+            genome.crossroadImportance = crossroadImportance;
+            genome.roomImportance = roomImportance;
+            currentPopulation.Add(genome);
         }
 
         StartGeneticAlgorithm();
@@ -58,6 +68,7 @@ public class GeneticAlgorithm : MonoBehaviour {
     public void StartGeneticAlgorithm()
     {
         generationCounter++;
+        generationText.text = "Generation " + generationCounter.ToString();
         geneticAlgorithmStarted = true;
         previousPopulation.Clear();
         previousPopulation.AddRange(currentPopulation);
@@ -76,8 +87,9 @@ public class GeneticAlgorithm : MonoBehaviour {
         List<Genome> genomePool = new List<Genome>();
         foreach (Genome genome in population)
         {
+            //TODO: Make fit genomes much more prevalent
             //The higher the fitness of the genome, the more it is placed into the pool, the more chances it has of being selected
-            for (int i = 0; i < genome.fitness * 10; i++)
+            for (int i = 0; i < genome.fitness * 5 +1; i++)
             {
                 genomePool.Add(genome);
             }
@@ -94,7 +106,7 @@ public class GeneticAlgorithm : MonoBehaviour {
             Genome mother = pool[Random.Range(0, pool.Count)];
             Genome father = pool[Random.Range(0, pool.Count)];
 
-            Genome child = new Genome(father, mother);
+            Genome child = new Genome(father, mother, 0.01f);
 
             population.Add(child);
         }
@@ -107,7 +119,7 @@ public class GeneticAlgorithm : MonoBehaviour {
         foreach (Genome genome in currentPopulation)
         {
             //Debug.Log("Calculating fitness");
-            yield return genome.CalculateFitness(successors, lsystem, "FFFF", dungeonRemoval);
+            yield return genome.CalculateFitness(successors, lsystem, "FFFF", dungeonRemoval, nmbrOfLSystemIterations);
             Debug.Log("- - - - Id: " + genome.id + " is " + genome.fitness + " fit - - - - -");
         }
 

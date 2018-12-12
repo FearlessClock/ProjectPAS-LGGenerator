@@ -13,13 +13,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   succesors:
   - R
-  - 
-  chances: 0500000002000000
+  - ' '
+  chances: 0600000006000000
   choices:
   - R
   - R
   - R
   - R
   - R
+  - R
+  - 
+  - 
+  - 
+  - 
   - 
   - 

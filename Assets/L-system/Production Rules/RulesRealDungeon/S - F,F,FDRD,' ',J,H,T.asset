@@ -9,38 +9,45 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ccccf4747d311e745a3bcfbad1390319, type: 3}
-  m_Name: S - F,F,FR,' ',J,H,T
+  m_Name: S - F,F,FDRD,' ',J,H,T
   m_EditorClassIdentifier: 
   succesors:
   - F
   - F
-  - FR
+  - FDRD
   - 
   - J[+FR ]^F
   - H[-FR]^F
   - T[+FR]-FR
-  chances: 07000000060000000300000004000000010000000100000001000000
+  chances: 01000000020000000700000006000000040000000200000008000000
   choices:
   - F
   - F
   - F
-  - F
-  - F
-  - F
-  - F
-  - F
-  - F
-  - F
-  - F
-  - F
-  - F
-  - FR
-  - FR
-  - FR
+  - FDRD
+  - FDRD
+  - FDRD
+  - FDRD
+  - FDRD
+  - FDRD
+  - FDRD
+  - 
+  - 
   - 
   - 
   - 
   - 
   - J[+FR ]^F
+  - J[+FR ]^F
+  - J[+FR ]^F
+  - J[+FR ]^F
   - H[-FR]^F
+  - H[-FR]^F
+  - T[+FR]-FR
+  - T[+FR]-FR
+  - T[+FR]-FR
+  - T[+FR]-FR
+  - T[+FR]-FR
+  - T[+FR]-FR
+  - T[+FR]-FR
   - T[+FR]-FR

@@ -4,23 +4,25 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class DungeonRunner : MonoBehaviour {
+    public ITilemap itilemap;
     public Tilemap tilemap;
     private int widthMax;
     private int heightMax;
     private int widthMin;
     private int heightMin;
     public Vector3 startingPosition;
+    private Vector3 offsetBound;
 
     TileBase[] tiles;
     // Use this for initialization
     void Start ()
     {
-        tilemap.transform.position = new Vector3(100, 100);
         BoundsInt tilemapSize = tilemap.cellBounds;
         widthMax = tilemapSize.xMax;
         heightMax = tilemapSize.yMax;
         widthMin = tilemapSize.xMin;
         heightMin = tilemapSize.yMin;
+        offsetBound = new Vector3(widthMin, heightMin);
         Debug.Log("Points for the tilemap: " + widthMax + " " + heightMax + " : " + widthMin + " " + heightMin);
         tiles = tilemap.GetTilesBlock(tilemapSize);
 	}
@@ -35,8 +37,11 @@ public class DungeonRunner : MonoBehaviour {
         TileBase[] surroundingTiles = GetSurroundingTiles(startingPosition);
         Vector3Int tilePosition = new Vector3Int(0,0,0);
         TileData tileData = new TileData();
-        surroundingTiles[0].GetTileData(tilePosition, null, ref tileData);
-        Debug.Log(tileData.sprite);
+        if (surroundingTiles[0])
+        {
+            surroundingTiles[0].GetTileData(tilePosition, null, ref tileData);
+            Debug.Log(tileData.sprite + " " + tilePosition);
+        }
     }
 
     private TileBase[] GetSurroundingTiles(Vector3 currentPosition)
@@ -71,8 +76,7 @@ public class DungeonRunner : MonoBehaviour {
 
     TileBase GetTileAt(Vector3 pos)
     {
-        Debug.Log((int)pos.x + (int)pos.y * (Mathf.Abs(widthMin) + widthMax) + " " + tiles.Length);
-        Debug.Log(Mathf.Abs(widthMin) + widthMax);
+        pos -= offsetBound;
         return tiles[(int)pos.x + (int)pos.y * (Mathf.Abs(widthMin) + widthMax)];
     }
 }

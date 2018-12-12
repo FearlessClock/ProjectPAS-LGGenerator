@@ -18,6 +18,9 @@ public class Lsystem : MonoBehaviour {
 
     public bool AxiomIsStepping;
 
+    public GameObject parameterTextShowValues;
+    public Transform transformOfObjects;
+
     public void ResetAxiom()
     {
         axiom = startingAxiom;
@@ -81,7 +84,6 @@ public class Lsystem : MonoBehaviour {
 
     public bool StepAxiom()
     {
-        Debug.Log("Step Axiom " + AxiomIsStepping);
         if (!AxiomIsStepping)
         {
             StartCoroutine("UpdateAxiom");
@@ -115,7 +117,6 @@ public class Lsystem : MonoBehaviour {
                 for(int j = 0; j < currentRules.Count; j++)
                 {
                     ProductionRule prodRule = currentRules[j];
-
                     //Get the different char for the rule
                     char predecessor;
                     char preLetter;
@@ -168,5 +169,45 @@ public class Lsystem : MonoBehaviour {
         }
 
         preDec = axiom[index];
+    }
+
+    public List<int> GetSuccessorChances()
+    {
+        List<int> chances = new List<int>();
+        foreach (ProductionRule prod in productionRuleOrganiser.productionRules)
+        {
+            Succesors.StochasticSuccesor succ = (prod.succesorObject as Succesors.StochasticSuccesor);
+            
+            if(succ)
+            {
+                chances.AddRange(succ.chances);
+            }
+        }
+        return chances;
+    }
+
+    public void SetSuccessorChances(List<int> newChances)
+    {
+        int counter = 0;
+        foreach (Transform child in transformOfObjects)
+        {
+            Destroy(child.gameObject);
+        }
+        foreach (ProductionRule prod in productionRuleOrganiser.productionRules)
+        {
+            Succesors.StochasticSuccesor succ = (prod.succesorObject as Succesors.StochasticSuccesor);
+            if (succ)
+            {
+                GameObject obj = Instantiate<GameObject>(parameterTextShowValues, transformOfObjects);
+                TextMeshProUGUI textHolder = obj.GetComponent<TextMeshProUGUI>();
+                textHolder.text = succ.name + ": ";
+                for (int i = 0; i < succ.chances.Length; i++)
+                {
+                    succ.chances[i] = newChances[counter];
+                    textHolder.text += succ.chances[i] + ", ";
+                    counter++;
+                }
+            }
+        }
     }
 }
